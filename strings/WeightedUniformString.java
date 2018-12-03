@@ -13,25 +13,24 @@ public class WeightedUniformString
 	{
 		Set <Integer> weights = new HashSet <Integer> ();
 		
-		for (int i = 0; i < s.length (); ++ i)
+		int i = 0, j = 1;
+		char [] chars = s.toCharArray ();
+
+		while (i < chars.length)
 		{
-			for (int j = i + 1; j <= s.length (); ++ j)
+			weights.add (chars [i] - 'a' + 1);
+			while (j < chars.length && chars [i] == chars [j ++])
 			{
-				char [] chars = s.substring (i, j).toCharArray ();
-				Set
-				int weight = 0;
-				
-				for (int k = 1; k < chars.length; ++ k)
-					
-					weight += k * (chars [k] - 'a' + 1);
-				
-				weights.add (weight);
+				weights.add ((chars [i] - 'a' + 1) * (j - i + 1));
+				j ++;
 			}
+
+			i = j ++;
 		}
-		
+
 		String [] results = new String [queries.length];
 		
-		for (int i = 0; i < queries.length; ++ i) results [i] = weights.contains (queries [i]) ? "Yes" : "No";
+		for (int k = 0; k < queries.length; ++ k) results [k] = weights.contains (queries [k]) ? "Yes" : "No";
 		
 		return results;
 	}
