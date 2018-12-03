@@ -3,7 +3,9 @@ package strings;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
 
@@ -19,7 +21,7 @@ public class WeightedUniformString
 		while (i < chars.length)
 		{
 			weights.add (chars [i] - 'a' + 1);
-			while (j < chars.length && chars [i] == chars [j ++])
+			while (j < chars.length && chars [i] == chars [j])
 			{
 				weights.add ((chars [i] - 'a' + 1) * (j - i + 1));
 				j ++;
@@ -28,11 +30,10 @@ public class WeightedUniformString
 			i = j ++;
 		}
 
-		String [] results = new String [queries.length];
-		
-		for (int k = 0; k < queries.length; ++ k) results [k] = weights.contains (queries [k]) ? "Yes" : "No";
-		
-		return results;
+		List <String> results = new ArrayList <String> ();
+
+		for (int query : queries) results.add (weights.contains (query) ? "Yes" : "No");
+		return results.toArray (new String [0]);
 	}
 
 	private static final Scanner scanner = new Scanner (System.in);
