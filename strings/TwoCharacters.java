@@ -26,10 +26,7 @@ public class TwoCharacters
 				int k = 1;
 				while (k < eval.length)
 				{
-					if (eval [k] == eval [k - 1])
-						
-						k = eval.length;
-					
+					if (eval [k] == eval [k - 1]) k = eval.length;
 					k ++;
 				}
 				
@@ -45,7 +42,7 @@ public class TwoCharacters
 		BufferedReader bufferedReader = new BufferedReader (new InputStreamReader (System.in));
 		BufferedWriter bufferedWriter = new BufferedWriter (new FileWriter (System.getenv ("OUTPUT_PATH")));
 
-		int l = Integer.parseInt (bufferedReader.readLine ().trim ());
+		Integer.parseInt (bufferedReader.readLine ().trim ());
 
 		String s = bufferedReader.readLine ();
 

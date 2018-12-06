@@ -18,7 +18,7 @@ public class Pairs
 		while (j < arr.length)
 		{
 			int difference = arr [j] - arr [i];
-			if (difference < k) j++;
+			if (difference < k) j ++;
 			else if (difference > k) i ++;
 			else
 			{

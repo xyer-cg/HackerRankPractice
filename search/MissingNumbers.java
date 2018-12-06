@@ -3,11 +3,11 @@ package search;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
+import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.Set;
 
 public class MissingNumbers
 {
@@ -16,25 +16,25 @@ public class MissingNumbers
 		Map <Integer, Integer> aMap = new HashMap <Integer, Integer> ();
 		for (int a : arr)
 		{
-			if (aMap.get (a) != null) aMap.put (a, aMap.get (a) + 1);
-			else aMap.put (a, 1);
+			int value = aMap.getOrDefault (a, 0);
+			aMap.put (a, ++ value);
 		}
 
 		Map <Integer, Integer> bMap = new HashMap <Integer, Integer> ();
 		for (int b : brr)
 		{
-			if (bMap.get (b) != null) bMap.put (b, bMap.get (b) + 1);
-			else bMap.put (b, 1);
+			int value = bMap.getOrDefault (b, 0);
+			bMap.put (b, ++ value);
 		}
 
-		List <Integer> list = new ArrayList <Integer> ();
-		for (int i : bMap.keySet ())
+		Set <Integer> set = new LinkedHashSet <Integer> ();
+		for (int key : bMap.keySet ())
+		{
+			int value = aMap.getOrDefault (key, 0);
+			if (value < bMap.get (key)) set.add (key);
+		}
 
-			if (aMap.get (i) == null || bMap.get (i) > aMap.get (i))
-
-				if (!list.contains (i)) list.add (i);
-
-		return list.stream ().sorted ().mapToInt (i -> i).toArray ();
+		return set.stream ().sorted ().mapToInt (i -> i).toArray ();
 	}
 
 	private static final Scanner scanner = new Scanner (System.in);
